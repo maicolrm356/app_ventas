@@ -2,4 +2,6 @@
     <string name="app_name">app</string>
     <string name="welcome_message">Hola, Michael</string>
     <string name="text_welcome">Bienvenido</string>
+    <string name="ingresar">INGRESAR</string>
+    <string name="registrate">Registrate</string>
 </resources>

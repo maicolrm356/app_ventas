@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/green"
+    tools:context=".ui.inicio.InicioActivity">
+
+    <ImageView
+        android:layout_width="290dp"
+        android:layout_height="282dp"
+        android:src="@drawable/logo_app"
+    />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_message"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:gravity="center"
+        android:layout_marginTop="45dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+    />
+    
+    <Button
+        android:id="@+id/btn_ingresar"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="@string/ingresar"
+        android:layout_marginTop="80dp"
+        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/white"
+        android:textStyle="bold"
+        app:strokeWidth = "2dp"
+        app:strokeColor = "@color/black"
+    />
+
+    <TextView
+        android:id="@+id/tv_registrate"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/registrate"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/black"
+    />
+</LinearLayout>
