@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
         <activity
+            android:name=".ui.include.HeaderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.RegistroActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.auth.LoginActivity"
             android:exported="false" />
         <activity

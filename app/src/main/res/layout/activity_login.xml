@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -25,7 +26,7 @@
             android:gravity="center"
             android:text="@string/text_splash"
             android:fontFamily="sans-serif-smallcaps"
-            android:textColor="@color/green_light"
+            android:textColor="@color/color_nombre_app"
             android:textSize="50sp"
             android:layout_marginTop="16dp"
             />
@@ -74,6 +75,8 @@
             android:background="@drawable/style_edit"
             android:ems="10"
             android:hint="@string/correo_electronico"
+            android:textColorHint="@color/color_text"
+            android:textColor="@color/color_text"
             android:inputType="textEmailAddress"
             android:paddingStart="15dp"
             android:paddingEnd="15dp" />
@@ -110,11 +113,12 @@
             android:background="@drawable/style_edit"
             android:ems="10"
             android:hint="@string/contraseña"
+            android:textColorHint="@color/color_text"
+            android:textColor="@color/color_text"
             android:inputType="textPassword"
             android:paddingStart="15dp"
             android:paddingEnd="15dp" />
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -135,6 +139,8 @@
             android:textColor="@color/color_text"
             android:textSize="14sp"
             android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
             />
     </LinearLayout>
 
@@ -146,12 +152,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.730"
-        >
+        app:layout_constraintVertical_bias="0.730">
 
         <Button
             android:id="@+id/btn_ingresar_google"
-            android:layout_width="245dp"
+            android:layout_width="210dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/botones"
             android:text="@string/iniciar_sesion"
@@ -162,29 +167,27 @@
             app:strokeWidth="1dp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_ingresar"
+        android:layout_width="210dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/orange"
+        android:text="@string/iniciar_sesion_google"
+        android:textColor="@color/color_text"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:icon="@drawable/ic_google"
+        app:iconGravity="start"
+        app:iconSize="25dp"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.820"
-        >
-
-        <Button
-            android:id="@+id/btn_ingresar"
-            android:layout_width="245dp"
-            android:layout_height="50dp"
-            android:backgroundTint="@color/orange"
-            android:text="@string/iniciar_sesion_google"
-            android:textColor="@color/color_text"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp" />
-    </LinearLayout>
+        />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -194,7 +197,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.855">
+        app:layout_constraintVertical_bias="0.865">
 
         <TextView
             android:id="@+id/no_tienes_cuenta"
@@ -204,8 +207,9 @@
             android:text="@string/no_tienes_cuenta"
             android:textColor="@color/color_text"
             android:textSize="14sp"
-            android:layout_marginTop="16dp"
-            />
+            android:layout_marginTop="18dp"
+            android:clickable="true"
+            android:focusable="true"/>
     </LinearLayout>
 
     <LinearLayout
@@ -216,7 +220,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.960"
+        app:layout_constraintVertical_bias="0.990"
         >
 
         <ImageView

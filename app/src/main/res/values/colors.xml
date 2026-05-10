@@ -9,6 +9,7 @@
     <color name="fondo">#F4F9F4</color>
     <color name="botones">#A2D149</color>
     <color name="green_light">#2D6A4F</color>
+    <color name="color_nombre_app">#2D6A4F</color>
     <color name="blue_light">#0e9acc</color>
     <color name="orange">#fbb726</color>
 </resources>

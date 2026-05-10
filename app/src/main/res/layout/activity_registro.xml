@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo"
+    tools:context=".ui.auth.RegistroActivity">
+
+    <!-- Header FIJO (Fuera del ScrollView) -->
+    <include
+        android:id="@+id/header_layout"
+        layout="@layout/activity_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <!-- ScrollView para el contenido del formulario -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/header_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="200dp">
+
+            <!-- Título del Formulario (Ahora dentro del ScrollView) -->
+            <TextView
+                android:id="@+id/tv_titulo_registro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_registro"
+                android:textColor="@color/color_nombre_app"
+                android:textSize="26sp"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Campo Nombre: Anclado al Título -->
+            <LinearLayout
+                android:id="@+id/container_nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_titulo_registro"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_user_login" />
+
+                <EditText
+                    android:id="@+id/et_nombre_registro"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/style_edit"
+                    android:ems="10"
+                    android:hint="@string/nombre_usuario"
+                    android:textColorHint="@color/color_text"
+                    android:textColor="@color/color_text"
+                    android:inputType="textPersonName"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp" />
+            </LinearLayout>
+
+            <!-- Campo Email -->
+            <LinearLayout
+                android:id="@+id/container_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/container_nombre"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_user_login" />
+
+                <EditText
+                    android:id="@+id/et_email_registro"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/style_edit"
+                    android:ems="10"
+                    android:hint="@string/correo_electronico"
+                    android:textColorHint="@color/color_text"
+                    android:textColor="@color/color_text"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp" />
+            </LinearLayout>
+
+            <!-- Campo Password -->
+            <LinearLayout
+                android:id="@+id/container_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/container_email"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:src="@drawable/ic_password_login"
+                    android:contentDescription="@null"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <EditText
+                    android:id="@+id/et_password_registro"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/style_edit"
+                    android:ems="10"
+                    android:hint="@string/contraseña"
+                    android:textColorHint="@color/color_text"
+                    android:textColor="@color/color_text"
+                    android:inputType="textPassword"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp" />
+            </LinearLayout>
+
+            <!-- Campo Confirmar Password -->
+            <LinearLayout
+                android:id="@+id/container_confirm_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/container_password"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:src="@drawable/ic_password_login"
+                    android:contentDescription="@null"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <EditText
+                    android:id="@+id/et_confirm_password_registro"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/style_edit"
+                    android:ems="10"
+                    android:hint="@string/confirmar_contraseña"
+                    android:textColorHint="@color/color_text"
+                    android:textColor="@color/color_text"
+                    android:inputType="textPassword"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp" />
+            </LinearLayout>
+
+            <!-- Botón Registrar -->
+            <Button
+                android:id="@+id/btn_registrar"
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/botones"
+                android:text="@string/registrarse"
+                android:textColor="@color/color_text"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp"
+                app:layout_constraintTop_toBottomOf="@id/container_confirm_password"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Texto Ya tienes cuenta -->
+            <LinearLayout
+                android:id="@+id/container_ya_tienes_cuenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/btn_registrar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/ya_tienes_cuenta"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/ya_tienes_cuenta"
+                    android:textColor="@color/color_text"
+                    android:textSize="14sp"
+                    android:clickable="true"
+                    android:focusable="true"/>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
