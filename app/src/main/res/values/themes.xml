@@ -3,7 +3,13 @@
     <style name="Base.Theme.App" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:textViewStyle">@style/miFuente</item>
     </style>
-
+    <style name="miFuente" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textFontWeight">900</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/color_text</item>
+    </style>
     <style name="Theme.App" parent="Base.Theme.App" />
 </resources>

@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="@color/green"
     tools:context=".ui.inicio.SplashActivity">
 
     <ImageView
+        android:id="@+id/iv_logo"
+        android:contentDescription="@null"
         android:layout_width="290dp"
         android:layout_height="282dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.403"
         app:srcCompat="@drawable/logo_app" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/textView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/text_welcome"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
-        android:gravity="center"
-        android:layout_marginTop="45dp"
+        android:text="@string/text_splash"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-    />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo"
+        />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="color_text">#333333</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white_light">#fffcff</color>
     <color name="blue">#2D64D9</color>
-    <color name="green">#58B844</color>
-    <color name="green_light">#80db48</color>
+    <color name="green">#F4F9F4</color>
+    <color name="fondo">#F4F9F4</color>
+    <color name="botones">#A2D149</color>
+    <color name="green_light">#2D6A4F</color>
     <color name="blue_light">#0e9acc</color>
     <color name="orange">#fbb726</color>
 </resources>

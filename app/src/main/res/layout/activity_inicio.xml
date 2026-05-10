@@ -1,57 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/green"
+    android:background="@color/fondo"
     tools:context=".ui.inicio.InicioActivity">
 
     <ImageView
+        android:id="@+id/iv_logo"
+        android:contentDescription="@null"
         android:layout_width="290dp"
         android:layout_height="282dp"
-        android:src="@drawable/logo_app"
-    />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.403"
+        app:srcCompat="@drawable/logo_app" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/textView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/welcome_message"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
-        android:gravity="center"
-        android:layout_marginTop="45dp"
+        android:text="@string/text_welcome"
+        android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-    />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo"
+        />
     
     <Button
         android:id="@+id/btn_ingresar"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:text="@string/ingresar"
-        android:layout_marginTop="80dp"
-        android:textSize="17sp"
-        android:textColor="@color/black"
+        android:layout_marginTop="60dp"
         android:backgroundTint="@color/white"
+        android:text="@string/ingresar"
+        android:textColor="@color/black"
+        android:textSize="17sp"
         android:textStyle="bold"
         app:strokeWidth = "2dp"
         app:strokeColor = "@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
     />
 
     <TextView
         android:id="@+id/tv_registrate"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:text="@string/registrate"
-        android:layout_gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginTop="25dp"
         android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ingresar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
     />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">app</string>
     <string name="welcome_message">Hola, Michael</string>
-    <string name="text_welcome">Bienvenido</string>
+    <string name="text_splash">Safe-Quim</string>
+    <string name="text_name_app_login">S a f e - Q u i m</string>
+    <string name="text_welcome">Bienvenido a Safe-Quim</string>
     <string name="ingresar">INGRESAR</string>
     <string name="registrate">Registrate</string>
+    <string name="correo_electronico">Correo Electronico</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="iniciar_sesion_google">Iniciar sesión con Google</string>
+    <string name="olvidaste_contraseña">¿Olvidaste tu contraseña?</string>
+    <string name="no_tienes_cuenta">¿No tienes una cuenta?</string>
 </resources>

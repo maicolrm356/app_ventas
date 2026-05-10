@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
         <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.inicio.InicioActivity"
             android:exported="false" />
         <activity
