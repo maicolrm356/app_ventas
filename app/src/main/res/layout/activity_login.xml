@@ -155,7 +155,7 @@
         app:layout_constraintVertical_bias="0.730">
 
         <Button
-            android:id="@+id/btn_ingresar_google"
+            android:id="@+id/btn_iniciar_sesion"
             android:layout_width="210dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/botones"
@@ -168,7 +168,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_ingresar"
+        android:id="@+id/btn_iniciar_sesion_google"
         android:layout_width="210dp"
         android:layout_height="60dp"
         android:backgroundTint="@color/orange"
@@ -224,7 +224,7 @@
         >
 
         <ImageView
-            android:id="@+id/btn_ingresar_fingerinprint"
+            android:id="@+id/btn_iniciar_sesion_fingerprint"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:contentDescription="@null"

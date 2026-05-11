@@ -18,6 +18,12 @@
     <string name="nombre_usuario">Nombre completo</string>
     <string name="confirmar_contraseña">Confirmar contraseña</string>
     <string name="boton_registro">registrar</string>
+    <string name="productos">Productos</string>
+    <string name="carrito">Carrito</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pedidos">Pedidos\n</string>
+    <string name="opciones">Opciones</string>
+    <string name="usuario">Usuario</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
 </resources>

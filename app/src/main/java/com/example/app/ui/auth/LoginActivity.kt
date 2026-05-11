@@ -9,10 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.app.R
+import com.example.app.ui.inicio.HomeActivity
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var btnSinCuenta: TextView
+    private lateinit var btnIniciarSesion: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +24,11 @@ class LoginActivity : AppCompatActivity() {
         btnSinCuenta = findViewById(R.id.no_tienes_cuenta)
         btnSinCuenta.setOnClickListener {
             startActivity(Intent(this, RegistroActivity::class.java))
+        }
+
+        btnIniciarSesion = findViewById(R.id.btn_iniciar_sesion)
+        btnIniciarSesion.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
         }
 
         }

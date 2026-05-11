@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
         <activity
+            android:name=".ui.inicio.HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.include.HeaderActivity"
             android:exported="false" />
         <activity
