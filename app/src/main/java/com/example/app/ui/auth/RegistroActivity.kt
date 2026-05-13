@@ -16,14 +16,14 @@ class RegistroActivity : AppCompatActivity() {
         setContentView(R.layout.activity_registro)
 
         //manejo del Scroll adaptable por teclado
-//        val rootview = findViewById<ViewGroup>(R.id.main)
-//        ViewCompat.setOnApplyWindowInsetsListener(rootview) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            val imeInsets =  insets.getInsets(WindowInsetsCompat.Type.ime())
-//
-//            val bottomPadding = maxOf(systemBars.bottom, imeInsets.bottom)
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, bottomPadding)
-//            insets
-//        }
+        val rootview = findViewById<ViewGroup>(R.id.main)
+        ViewCompat.setOnApplyWindowInsetsListener(rootview) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val imeInsets =  insets.getInsets(WindowInsetsCompat.Type.ime())
+
+            val bottomPadding = maxOf(systemBars.bottom, imeInsets.bottom)
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, bottomPadding)
+            insets
+        }
     }
 }

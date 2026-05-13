@@ -10,20 +10,20 @@
     tools:context=".ui.auth.LoginActivity">
 
     <LinearLayout
+        android:id="@+id/txtTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        >
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            style="@style/miFuente"
             android:text="@string/text_splash"
             android:fontFamily="sans-serif-smallcaps"
             android:textColor="@color/color_nombre_app"
@@ -35,17 +35,18 @@
     <ImageView
         android:id="@+id/iv_logo"
         android:contentDescription="@null"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/containerEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.180"
-        app:srcCompat="@drawable/logo_app" />
+        app:layout_constraintTop_toBottomOf="@id/txtTitulo"
+        app:srcCompat="@drawable/logo_app"
+        android:padding="50dp"
+        />
 
     <LinearLayout
+        android:id="@+id/containerEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
