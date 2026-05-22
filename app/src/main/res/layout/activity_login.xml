@@ -13,7 +13,8 @@
         <!--        app:layout_constraintTop_toBottomOf="@id/iv_logo">-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            >
 
             <LinearLayout
                 android:id="@+id/txtTitulo"
@@ -83,7 +84,8 @@
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
                     android:textColor="@color/color_text"
-                    android:textColorHint="@color/color_text" />
+                    android:textColorHint="@color/color_text"
+                    android:autofillHints="emailAddress"/>
             </LinearLayout>
 
             <LinearLayout
@@ -119,7 +121,8 @@
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
                     android:textColor="@color/color_text"
-                    android:textColorHint="@color/color_text" />
+                    android:textColorHint="@color/color_text"
+                    android:autofillHints="password" />
             </LinearLayout>
 
             <LinearLayout
