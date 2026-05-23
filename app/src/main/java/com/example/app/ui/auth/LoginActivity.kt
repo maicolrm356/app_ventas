@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.app.R
+import com.example.app.ui.MainActivity
 import com.example.app.ui.inicio.HomeActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -39,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
 
         btnIniciarSesion = findViewById(R.id.btn_iniciar_sesion)
         btnIniciarSesion.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         }

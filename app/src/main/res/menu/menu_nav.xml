@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_perfil"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="@string/mi_perfil" />
+
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_admin"
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="@string/gestion_admin" />
+        <item
+            android:id="@+id/navigation_usuarios"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="@string/gestion_user" />
+
+        <item
+            android:id="@+id/navigation_productos"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="@string/gestion_productos" />
+    </group>
+
+    <item
+        android:id="@+id/navigation_logout"
+        android:icon="@android:drawable/ic_lock_power_off"
+        android:title="@string/cerrar_sesion" />
+
+</menu>
