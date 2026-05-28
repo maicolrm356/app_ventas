@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.403"
-        app:srcCompat="@drawable/logo_app" />
+        app:srcCompat="@drawable/app_logo" />
 
     <TextView
         android:id="@+id/textView"

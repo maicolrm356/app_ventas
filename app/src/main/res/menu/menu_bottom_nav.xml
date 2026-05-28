@@ -16,4 +16,14 @@
         android:id="@+id/navigation_compras"
         android:icon="@android:drawable/ic_menu_recent_history"
         android:title="@string/mis_compras" />
+    <item
+        android:id="@+id/navigation_gestion"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="@string/gestion_admin"
+        android:visible="false" />
+    <item
+        android:id="@+id/navigation_usuarios"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="@string/gestion_user"
+        android:visible="false" />
 </menu>

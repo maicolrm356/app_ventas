@@ -8,16 +8,75 @@
     tools:context=".ui.main.productos.HomeFragment">
 
     <TextView
+        android:id="@+id/tv_bienvenida"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/productos_destacados" />
+        android:padding="24dp"
+        android:textSize="24sp"
+        android:textColor="@color/color_text" />
 
+    <LinearLayout
+        android:id="@+id/layout_buttons_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone">
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/rv_productos"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--        tools:listitem="@layout/item_product" />-->
+        <Button
+            android:id="@+id/btn_home_productos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="@string/productos"
+            android:backgroundTint="@color/botones"
+            android:textColor="@color/color_text"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_home_carrito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="@string/carrito"
+            android:backgroundTint="@color/botones"
+            android:textColor="@color/color_text"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_home_compras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="@string/mis_compras"
+            android:backgroundTint="@color/botones"
+            android:textColor="@color/color_text"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_home_gestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="@string/gestion_admin"
+            android:backgroundTint="@color/botones"
+            android:textColor="@color/color_text"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_home_usuarios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/gestion_user"
+            android:backgroundTint="@color/botones"
+            android:textColor="@color/color_text"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+
+    </LinearLayout>
 
 </LinearLayout>

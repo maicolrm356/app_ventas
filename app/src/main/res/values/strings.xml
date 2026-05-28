@@ -38,4 +38,19 @@
     <string name="navigation_drawer_open">Menu abierto</string>
     <string name="navigation_drawer_close">Menu cerrado</string>
     <string name="productos_destacados">productos destacados</string>
+    <string name="agregar_carrito">Agregar</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="nuevo_producto">Nuevo producto</string>
+    <string name="editar_producto">Editar producto</string>
+    <string name="confirmar_eliminar">¿Eliminar producto?</string>
+    <string name="si">Sí</string>
+    <string name="no">No</string>
+    <string name="sin_stock">Sin stock</string>
+    <string name="empty_productos">No hay productos</string>
+    <string name="empty_carrito">No hay productos en el carrito</string>
+    <string name="empty_compras">No hay pedidos realizados</string>
+    <string name="empty_admin">No hay pedidos</string>
+    <string name="empty_usuarios">No hay usuarios registrados</string>
+    <string name="proceder_pago">Proceder al pago</string>
 </resources>

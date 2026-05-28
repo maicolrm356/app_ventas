@@ -1,60 +1,205 @@
 package com.example.app.ui.main.admin
 
+import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.app.R
+import com.example.app.modelos.Usuario
+import com.example.app.supabase.Supabase
+import com.example.app.ui.main.admin.adapters.UsuarioAdapter
+import io.github.jan.supabase.auth.auth
+import io.github.jan.supabase.postgrest.from
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import com.example.app.utils.LoadingUtil
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [UsuariosFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class UsuariosFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var rvUsuarios: RecyclerView
+    private lateinit var tvEmpty: TextView
+    private lateinit var adapter: UsuarioAdapter
+    private var loadingDialog: AlertDialog? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_usuarios, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UsuariosFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UsuariosFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        rvUsuarios = view.findViewById(R.id.rv_usuarios)
+        rvUsuarios.layoutManager = LinearLayoutManager(requireContext())
+        tvEmpty = view.findViewById(R.id.tv_empty)
+
+        adapter = UsuarioAdapter(
+            usuarios = emptyList(),
+            onToggleRol = { usuario -> toggleRol(usuario) },
+            onEditar = { usuario -> mostrarDialogoEditar(usuario) },
+            onEliminar = { usuario -> confirmarEliminar(usuario) }
+        )
+        rvUsuarios.adapter = adapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        cargarUsuarios()
+    }
+
+    private fun cargarUsuarios() {
+        val currentUserId = Supabase.client.auth.currentUserOrNull()?.id ?: return
+
+        if (!isAdded) return
+        loadingDialog = LoadingUtil.mostrarLoading(requireContext(), "Cargando usuarios...")
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val usuarios = Supabase.client.from("usuarios")
+                    .select()
+                    .decodeList<Usuario>()
+
+                val otrosUsuarios = usuarios.filter { it.id != currentUserId }
+
+                withContext(Dispatchers.Main) {
+                    LoadingUtil.ocultarLoading(loadingDialog)
+                    if (!isAdded) return@withContext
+                    adapter.actualizarLista(otrosUsuarios)
+                    val isEmpty = otrosUsuarios.isEmpty()
+                    rvUsuarios.visibility = if (isEmpty) View.GONE else View.VISIBLE
+                    tvEmpty.visibility = if (isEmpty) View.VISIBLE else View.GONE
+                }
+            } catch (_: Exception) {
+                withContext(Dispatchers.Main) {
+                    LoadingUtil.ocultarLoading(loadingDialog)
+                    if (!isAdded) return@withContext
                 }
             }
+        }
+    }
+
+    private fun toggleRol(usuario: Usuario) {
+        val nuevoRol = if (usuario.rol == "admin") "cliente" else "admin"
+
+        if (!isAdded) return
+        loadingDialog = LoadingUtil.mostrarLoading(requireContext(), "Cambiando rol...")
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                Supabase.client.from("usuarios").update(buildJsonObject {
+                    put("rol", nuevoRol)
+                }) { filter { eq("id", usuario.id) } }
+
+                withContext(Dispatchers.Main) {
+                    LoadingUtil.ocultarLoading(loadingDialog)
+                    if (!isAdded) return@withContext
+                    Toast.makeText(requireContext(), "${usuario.nombre} ahora es $nuevoRol", Toast.LENGTH_SHORT).show()
+                    cargarUsuarios()
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    LoadingUtil.ocultarLoading(loadingDialog)
+                    if (!isAdded) return@withContext
+                    Toast.makeText(requireContext(), "Error al cambiar rol", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun mostrarDialogoEditar(usuario: Usuario) {
+        val inflater = LayoutInflater.from(requireContext())
+        val view = inflater.inflate(R.layout.dialog_editar_usuario, null)
+        val etNombre = view.findViewById<EditText>(R.id.et_editar_usuario_nombre)
+        val etEmail = view.findViewById<EditText>(R.id.et_editar_usuario_email)
+
+        etNombre.setText(usuario.nombre)
+        etEmail.setText(usuario.email)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setTitle("Editar usuario")
+            .setView(view)
+            .setPositiveButton("Guardar", null)
+            .setNegativeButton("Cancelar", null)
+            .create()
+
+        dialog.show()
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            val nombre = etNombre.text.toString().trim()
+            val email = etEmail.text.toString().trim()
+
+            if (nombre.isEmpty() || email.isEmpty()) {
+                Toast.makeText(requireContext(), "Completa todos los campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            dialog.dismiss()
+            actualizarUsuario(usuario, nombre, email)
+        }
+    }
+
+    private fun actualizarUsuario(usuario: Usuario, nombre: String, email: String) {
+        if (!isAdded) return
+        loadingDialog = LoadingUtil.mostrarLoading(requireContext(), "Guardando...")
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                Supabase.client.from("usuarios").update(buildJsonObject {
+                    put("nombre", nombre)
+                    put("email", email)
+                }) { filter { eq("id", usuario.id) } }
+
+                withContext(Dispatchers.Main) {
+                    LoadingUtil.ocultarLoading(loadingDialog)
+                    if (!isAdded) return@withContext
+                    Toast.makeText(requireContext(), "Usuario actualizado", Toast.LENGTH_SHORT).show()
+                    cargarUsuarios()
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    LoadingUtil.ocultarLoading(loadingDialog)
+                    if (!isAdded) return@withContext
+                    Toast.makeText(requireContext(), "Error al actualizar usuario", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun confirmarEliminar(usuario: Usuario) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Eliminar usuario")
+            .setMessage("¿Eliminar a ${usuario.nombre}? Esta acción no se puede deshacer.")
+            .setPositiveButton("Eliminar") { _, _ -> eliminarUsuario(usuario) }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    private fun eliminarUsuario(usuario: Usuario) {
+        if (!isAdded) return
+        loadingDialog = LoadingUtil.mostrarLoading(requireContext(), "Eliminando...")
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                Supabase.client.from("usuarios").delete { filter { eq("id", usuario.id) } }
+
+                withContext(Dispatchers.Main) {
+                    LoadingUtil.ocultarLoading(loadingDialog)
+                    if (!isAdded) return@withContext
+                    Toast.makeText(requireContext(), "${usuario.nombre} eliminado", Toast.LENGTH_SHORT).show()
+                    cargarUsuarios()
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    LoadingUtil.ocultarLoading(loadingDialog)
+                    if (!isAdded) return@withContext
+                    Toast.makeText(requireContext(), "Error al eliminar usuario", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 }

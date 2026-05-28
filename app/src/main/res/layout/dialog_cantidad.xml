@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_dialog_cantidad_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/color_text"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tv_dialog_cantidad_stock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_dialog_cantidad_menos"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="-"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/botones"
+            android:textColor="@color/color_text" />
+
+        <TextView
+            android:id="@+id/tv_dialog_cantidad_valor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:paddingHorizontal="32dp"
+            android:textColor="@color/color_text" />
+
+        <Button
+            android:id="@+id/btn_dialog_cantidad_mas"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="+"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/botones"
+            android:textColor="@color/color_text" />
+
+    </LinearLayout>
+
+</LinearLayout>

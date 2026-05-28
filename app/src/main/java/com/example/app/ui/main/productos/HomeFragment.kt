@@ -1,60 +1,83 @@
 package com.example.app.ui.main.productos
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.example.app.R
+import com.example.app.modelos.Usuario
+import com.example.app.supabase.Supabase
+import io.github.jan.supabase.auth.auth
+import io.github.jan.supabase.postgrest.from
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import com.example.app.utils.LoadingUtil
+import android.app.AlertDialog
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private var onNavigate: ((Int) -> Unit)? = null
+    private var loadingDialog: AlertDialog? = null
+
+    fun setOnNavigateListener(listener: (Int) -> Unit) {
+        onNavigate = listener
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val tvBienvenida = view.findViewById<TextView>(R.id.tv_bienvenida)
+        val layoutButtons = view.findViewById<LinearLayout>(R.id.layout_buttons_home)
+        val btnProductos = view.findViewById<Button>(R.id.btn_home_productos)
+        val btnCarrito = view.findViewById<Button>(R.id.btn_home_carrito)
+        val btnCompras = view.findViewById<Button>(R.id.btn_home_compras)
+        val btnGestion = view.findViewById<Button>(R.id.btn_home_gestion)
+        val btnUsuarios = view.findViewById<Button>(R.id.btn_home_usuarios)
+
+        val userId = Supabase.client.auth.currentUserOrNull()?.id
+
+        loadingDialog = LoadingUtil.mostrarLoading(requireContext(), "Cargando...")
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val usuario = if (userId != null) {
+                    Supabase.client.from("usuarios")
+                        .select { filter { eq("id", userId) } }
+                        .decodeSingleOrNull<Usuario>()
+                } else null
+
+                withContext(Dispatchers.Main) {
+                    LoadingUtil.ocultarLoading(loadingDialog)
+                    tvBienvenida.text = "Bienvenido, ${usuario?.nombre ?: "Usuario"}"
+                    layoutButtons.visibility = View.VISIBLE
+
+                    val isAdmin = usuario?.rol == "admin"
+                    btnGestion.visibility = if (isAdmin) View.VISIBLE else View.GONE
+                    btnUsuarios.visibility = if (isAdmin) View.VISIBLE else View.GONE
+                    btnCarrito.visibility = if (isAdmin) View.GONE else View.VISIBLE
+                    btnCompras.visibility = if (isAdmin) View.GONE else View.VISIBLE
+                }
+            } catch (_: Exception) {
+                withContext(Dispatchers.Main) {
+                    LoadingUtil.ocultarLoading(loadingDialog)
+                    tvBienvenida.text = "Bienvenido"
                 }
             }
+        }
+
+        btnProductos.setOnClickListener { onNavigate?.invoke(R.id.navigation_productos) }
+        btnCarrito.setOnClickListener { onNavigate?.invoke(R.id.navigation_carrito) }
+        btnCompras.setOnClickListener { onNavigate?.invoke(R.id.navigation_compras) }
+        btnGestion.setOnClickListener { onNavigate?.invoke(R.id.navigation_gestion) }
+        btnUsuarios.setOnClickListener { onNavigate?.invoke(R.id.navigation_usuarios) }
     }
 }
